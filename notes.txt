@@ -1,0 +1,46 @@
+1.Create a new file named kilo.c and give it a main() function. (kilo is the name of the text editor we are building.)
+
+kilo.c
+Step 1
+main
+int main() {
+  return 0;
+}
+
+2.The command to compile is cc kilo.c -o kilo. Break it down:
+cc: This is the C compiler that translates C code into a form the computer can use.
+kilo.c: This is the name of the file containing the C code.
+-o kilo: This part tells the compiler to name the resulting program "kilo".
+
+If everything is okay and there are no mistakes in your code, the compiler creates a new program - an executable file (.exe) that you can run, named "kilo", because of the -o kilo part
+
+If you use `gcc` instead of `cc`, the command would be:
+
+gcc kilo.c -o kilo
+
+- `gcc`: This is another popular C compiler, similar to `cc`. It stands for "GNU Compiler Collection," and it's commonly used in Unix-like operating systems.
+
+So, whether you use `cc` or `gcc`, the result will be the same: the C code in "kilo.c" will be compiled into an executable program named "kilo" if there are no errors
+
+To run the program named "kilo" that you just compiled, you need to type ./kilo in your shell. The ./ tells your shell to look for the program in the current directory.
+
+every program returns an "exit status" when it finishes running.
+You can check this exit status using the command echo $? immediately after running the program.
+
+
+If everything went well and the program ran successfully, the exit status should be 0. This indicates that the program executed without encountering any errors.(think like exit code kind of means the no. of errors.)
+
+true will always return a status of 0 and false will return 1.
+
+Compiling with make
+Typing cc kilo.c -o kilo every time you want to recompile gets tiring. The make program allows you to simply run make and it will compile your program for you. You just have to supply a Makefile to tell it how to compile your program.
+
+vim Makefile
+
+CC=gcc
+CFLAGS=-Wall -Wextra -pedantic -std=c99
+
+kilo: kilo.c
+	$(CC) $(CFLAGS) kilo.c -o kilo
+
+
