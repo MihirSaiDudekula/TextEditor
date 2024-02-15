@@ -24,7 +24,9 @@ void enableRawMode() {
   struct termios raw = orig_termios;
   
   // Turn off the ECHO flag in the local flags field (c_lflag) to disable echoing
-  raw.c_lflag &= ~(ECHO);
+  // In raw mode, characters are directly read from and written to the device without any translation or interpretation by the operating system. On input, characters are available as soon as they are typed, and are not echoed on the terminal by the operating system
+  raw.c_lflag &= ~(ECHO | ICANON);
+/* Normally, when you type something and press Enter, the terminal sends the entire line of text to the program. This is called line-by-line input processing, or canonical mode.However, by turning off canonical mode, the program reads input byte-by-byte instead of waiting for the Enter key. This means the program can respond immediately to each keypress without having to wait for a complete line of input.*/
   
   // Set the modified terminal attributes (raw) for the standard input file descriptor
   tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw);
