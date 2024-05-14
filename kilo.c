@@ -49,7 +49,10 @@ void enableRawMode() {
 
   
   raw.c_lflag &= ~(ECHO | ICANON);
-/* Normally, when you type something and press Enter, the terminal sends the entire line of text to the program. This is called line-by-line input processing, or canonical mode.However, by turning off canonical mode, the program reads input byte-by-byte instead of waiting for the Enter key. This means the program can respond immediately to each keypress without having to wait for a complete line of input.*/
+/* Normally, when you type something and press Enter, the terminal sends the entire line of text to the program. 
+This is called line-by-line input processing, or canonical mode.However, by turning off canonical mode, 
+the program reads input byte-by-byte instead of waiting for the Enter key. This means the program can respond immediately 
+to each keypress without having to wait for a complete line of input.*/
   
   // Set the modified terminal attributes (raw) for the standard input file descriptor
   tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw);
